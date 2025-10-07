@@ -1,15 +1,132 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Agenda</title>
+    <title>Agenda | Dashboard</title>
+    <link rel="stylesheet" href="/src/global.css" />
+    <link rel="stylesheet" href="/src/styles/index.css" />
   </head>
-  <body
-    class="d-flex flex-column align-items-center justify-content-center vh-100 bg-body-custom">
-    <h1 class="text-white text-uppercase fw-bold">Agenda en construcción</h1>
-    <p class="text-white fw-semibold">Por el momento, aquí es puro monte</p>
-    <script type="module" src="/src/main.js"></script>
+  <body class="bg-body-custom">
+    <div
+      class="main-container d-flex w-100 align-items-center justify-content-center gap-5 p-5">
+      <!-- Lista de Eventos -->
+      <div class="event-card mt-5 flex-grow-1">
+        <div class="d-flex justify-content-between align-items-center mb-4 p-1">
+          <h4 class="mb-4 align-self-start">
+            <i class="fas fa-list"></i> Próximos Eventos
+          </h4>
+          <h3
+            class="mb-4 border-rounded p-2 d-flex align-items-center justify-content-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="312f2c">
+              <path
+                d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z" />
+            </svg>
+          </h3>
+        </div>
+        <div id="eventList" class="list-group">
+          <!-- Cargar eventos aquí -->
+        </div>
+        <div id="emptyState" class="empty-state">
+          <i class="fas fa-calendar-times"></i>
+          <h5>No hay eventos programados</h5>
+          <p>Haz clic en + para agregar tu primer evento</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal para Agregar/Editar Evento -->
+    <div class="modal fade" id="eventModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalTitle">
+              <i class="fas fa-calendar-plus"></i> Nuevo Evento
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <form id="eventForm">
+              <input type="hidden" id="eventId" />
+
+              <div class="mb-3">
+                <label for="eventTitle" class="form-label">
+                  <i class="fas fa-heading"></i> Título del Evento *
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="eventTitle"
+                  required />
+              </div>
+
+              <div class="mb-3">
+                <label for="eventDescription" class="form-label">
+                  <i class="fas fa-align-left"></i> Descripción
+                </label>
+                <textarea
+                  class="form-control"
+                  id="eventDescription"
+                  rows="3"></textarea>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="eventDate" class="form-label">
+                    <i class="fas fa-calendar"></i> Fecha *
+                  </label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="eventDate"
+                    required />
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="eventTime" class="form-label">
+                    <i class="fas fa-clock"></i> Hora *
+                  </label>
+                  <input
+                    type="time"
+                    class="form-control"
+                    id="eventTime"
+                    required />
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="eventPriority" class="form-label">
+                  <i class="fas fa-flag"></i> Prioridad
+                </label>
+                <select class="form-select" id="eventPriority">
+                  <option value="baja">Baja</option>
+                  <option value="media" selected>Media</option>
+                  <option value="alta">Alta</option>
+                </select>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal">
+              <i class="fas fa-times"></i> Cancelar
+            </button>
+            <button type="button" class="btn btn-primary" onclick="saveEvent()">
+              <i class="fas fa-save"></i> Guardar Evento
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
+  <script type="module" src="/src/main.js"></script>
 </html>
