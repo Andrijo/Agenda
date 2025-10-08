@@ -1,4 +1,4 @@
-//Array para almacenar eventos en memoria
+/* Array para almacenar eventos en memoria
 let events = [
   {
     id: 1,
@@ -25,7 +25,7 @@ let events = [
     priority: "baja",
   },
 ]
-
+*/
 let nextId = 3
 
 // Cargar eventos al iniciar

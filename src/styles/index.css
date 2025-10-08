@@ -1,24 +1,50 @@
 body {
   min-height: 100vh;
-  padding: 20px 0;
+  display: flex;
+  flex-direction: column; /* hace que elementos (nav + main) se apilen verticalmente */
+  align-items: stretch;
+}
+/* Navbar styles moved here so they load with the page's CSS */
+.navbar {
+  width: 100%;
+  position: absolute;
+  height: auto;
+  top: 0;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 1px 5px #ffcde1;
+}
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem;
+}
+
+.navbar-logo svg {
+  position: relative;
+  left: 8dvw;
+  height: 40px;
 }
 .main-container {
   max-width: 900px;
   margin: 0 auto;
 }
+
 .header-card {
-  background: white;
+  background: #ff1637;
   border-radius: 15px;
   padding: 30px;
   margin-bottom: 30px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
+
 .event-card {
-  background: white;
+  background: #ffecd1;
   border-radius: 15px;
   padding: 25px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
+
 .list-group-item {
   border-left: 4px solid #667eea;
   margin-bottom: 10px;
@@ -38,29 +64,28 @@ body {
   font-size: 0.9em;
 }
 .btn-add {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border: none;
   padding: 12px 30px;
+  width: 5rem;
   font-weight: bold;
+  object-fit: contain;
 }
 .btn-add:hover {
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
 }
 .empty-state {
   text-align: center;
   padding: 60px 20px;
-  color: #6c757d;
 }
 .empty-state i {
   font-size: 4em;
   margin-bottom: 20px;
-  color: #dee2e6;
 }
 .modal-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: #3e000c;
+  color: #ffcde1;
 }
+
 .priority-badge {
   font-size: 0.75em;
   padding: 4px 8px;
