@@ -4,8 +4,8 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: #ff1637;
+  background-color: #3e000c;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -96,5 +96,5 @@ button:focus-visible {
 }
 
 .bg-body-custom {
-  background-color: #56070c;
+  background-color: #3e000c;
 }
