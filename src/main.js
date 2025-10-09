@@ -1,4 +1,5 @@
 import "./style.css"
+import "./styles/components/modal.css"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/dist/js/bootstrap.bundle.min.js"
 import "./scripts/index.js"

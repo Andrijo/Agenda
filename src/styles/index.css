@@ -1,35 +1,12 @@
-body {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column; /* hace que elementos (nav + main) se apilen verticalmente */
-  align-items: stretch;
-}
-/* Navbar styles moved here so they load with the page's CSS */
-.navbar {
-  width: 100%;
-  position: absolute;
-  height: auto;
-  top: 0;
-  display: flex;
-  align-items: center;
-  box-shadow: 0 1px 5px #ffcde1;
-}
-.navbar-logo {
-  display: flex;
-  align-items: center;
-  padding: 0.8rem;
-}
+/* Estilos del contenedor principal */
 
-.navbar-logo svg {
-  position: relative;
-  left: 8dvw;
-  height: 40px;
-}
 .main-container {
   max-width: 900px;
   margin: 0 auto;
+  padding: 0;
 }
 
+/* Estilos de las cards */
 .header-card {
   background: #ff1637;
   border-radius: 15px;
@@ -39,10 +16,10 @@ body {
 }
 
 .event-card {
-  background: #ffecd1;
   border-radius: 15px;
   padding: 25px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  background-color: #c2d8c4;
 }
 
 .list-group-item {
@@ -51,16 +28,15 @@ body {
   border-radius: 8px !important;
   transition: all 0.3s;
 }
+
 .list-group-item:hover {
   transform: translateX(5px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 .event-date {
-  color: #667eea;
   font-weight: bold;
 }
 .event-time {
-  color: #6c757d;
   font-size: 0.9em;
 }
 .btn-add {
@@ -80,10 +56,6 @@ body {
 .empty-state i {
   font-size: 4em;
   margin-bottom: 20px;
-}
-.modal-header {
-  background: #3e000c;
-  color: #ffcde1;
 }
 
 .priority-badge {
