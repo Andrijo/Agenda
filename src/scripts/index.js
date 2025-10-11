@@ -1,37 +1,35 @@
-/* Array para almacenar eventos en memoria
-let events = [
-  {
-    id: 1,
-    title: "Reunión de equipo",
-    description: "Revisión de proyecto mensual",
-    date: "2025-10-15",
-    time: "10:00",
-    priority: "alta",
-  },
-  {
-    id: 2,
-    title: "Cita médica",
-    description: "Chequeo general",
-    date: "2025-10-20",
-    time: "15:30",
-    priority: "media",
-  },
-  {
-    id: 3,
-    title: "Cumpleaños de mi perro",
-    description: "Celebración casual",
-    date: "2025-10-25",
-    time: "12:00",
-    priority: "baja",
-  },
-]
-*/
-let nextId = 3
+// Cargar eventos desde localStorage al iniciar
+let events = JSON.parse(localStorage.getItem("events")) || []
+let nextId = parseInt(localStorage.getItem("nextId")) || 1
 
 // Cargar eventos al iniciar
 document.addEventListener("DOMContentLoaded", function () {
+  setDateLimits()
   displayEvents()
 })
+
+// Establecer límites de fecha
+function setDateLimits() {
+  const dateInput = document.getElementById("eventDate")
+
+  // Fecha mínima: hoy
+  const today = new Date()
+  const minDate = today.toISOString().split("T")[0]
+
+  // Fecha máxima: 1 año desde hoy
+  const maxDate = new Date()
+  maxDate.setFullYear(maxDate.getFullYear() + 1)
+  const maxDateStr = maxDate.toISOString().split("T")[0]
+
+  dateInput.setAttribute("min", minDate)
+  dateInput.setAttribute("max", maxDateStr)
+}
+
+// Función para guardar en localStorage
+function saveToLocalStorage() {
+  localStorage.setItem("events", JSON.stringify(events))
+  localStorage.setItem("nextId", nextId.toString())
+}
 
 // Mostrar eventos
 function displayEvents() {
@@ -87,10 +85,12 @@ function displayEvents() {
                                     : ""
                                 }
                                 <div class="event-date">
-                                    <i class="fas fa-calendar"></i> ${formattedDate}
+                                    <i class="fas fa-calendar"></i><span class="text-muted">Fecha:</span> ${formattedDate}
                                 </div>
                                 <div class="event-time">
-                                    <i class="fas fa-clock"></i> ${event.time}
+                                    <i class="fas fa-clock"></i><span class="text-muted">Hora:</span> ${
+                                      event.time
+                                    }
                                 </div>
                             </div>
                             <div class="btn-group">
@@ -134,6 +134,15 @@ function saveEvent() {
     return
   }
 
+  // Validar que la fecha no sea en el pasado
+  const selectedDate = new Date(date + " " + time)
+  const now = new Date()
+
+  if (selectedDate < now) {
+    alert("No puedes crear eventos en fechas pasadas")
+    return
+  }
+
   if (id) {
     // Editar evento existente
     const index = events.findIndex((e) => e.id === parseInt(id))
@@ -157,6 +166,8 @@ function saveEvent() {
     })
   }
 
+  // Guardar en localStorage después de cualquier cambio
+  saveToLocalStorage()
   displayEvents()
 
   // Cerrar modal
@@ -190,6 +201,7 @@ function editEvent(id) {
 function deleteEvent(id) {
   if (confirm("¿Estás seguro de que deseas eliminar este evento?")) {
     events = events.filter((e) => e.id !== id)
+    saveToLocalStorage() // Guardar después de eliminar
     displayEvents()
   }
 }
